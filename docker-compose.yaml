@@ -2,10 +2,7 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    image: tc-chat-web
+    image: ghcr.io/taskercompanyofficial/tc-chat:latest
     command: ['bundle', 'exec', 'rails', 's', '-p', '3000', '-b', '0.0.0.0']
     ports:
       - "3000:3000"
@@ -21,10 +18,7 @@ services:
       - redis
 
   worker:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    image: tc-chat-worker
+    image: ghcr.io/taskercompanyofficial/tc-chat:latest
     command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
     environment:
       - NODE_ENV=production
@@ -56,3 +50,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+
